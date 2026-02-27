@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 	"django.contrib.messages",
 	"django.contrib.staticfiles",
 	"rest_framework",
+	"rest_framework.authtoken",
 	*apps.APPS,
 ]
 
@@ -71,6 +72,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "twbn.wsgi.application"
+
+AUTH_USER_MODEL = "users.User"
 
 
 # Database
