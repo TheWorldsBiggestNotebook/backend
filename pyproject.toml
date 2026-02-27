@@ -1,0 +1,13 @@
+[project]
+name = "twbn"
+version = "0.1.0"
+description = "Forum-style web application for universities, enabling students and instructors to ask, answer, and search course-related questions."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "djangorestframework>=3.16.1",
+    "psycopg>=3.3.3",
+]
+
+[tool.ruff.format]
+indent-style = "tab"
