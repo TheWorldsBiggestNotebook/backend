@@ -106,6 +106,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Django REST Framework settings
+REST_FRAMEWORK = {
+	"DEFAULT_AUTHENTICATION_CLASSES": [
+		"rest_framework.authentication.TokenAuthentication",
+	],
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
