@@ -13,5 +13,16 @@ class User(AbstractUser):
 		blank=True, help_text="Short bio or description of the user."
 	)
 
+	def save(self, *args, **kwargs):
+		"""
+		Automatically set the role based on is_superuser and is_staff flags.
+		Moderators are created manually by admins (for now), so they won't be set here.
+		"""
+		if self.is_superuser:
+			self.role = self.Role.ADMIN
+		else:
+			self.role = self.Role.MEMBER
+		super().save(*args, **kwargs)
+
 	def __str__(self):
 		return self.username
