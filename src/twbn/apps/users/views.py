@@ -21,7 +21,7 @@ class UserMeView(generics.RetrieveUpdateAPIView):
 
 
 class UserDetailView(generics.RetrieveAPIView):
-	queryset = User.objects.all()
+	queryset = User.objects.filter(role=User.Role.MEMBER)
 	serializer_class = UserSerializer
 	permission_classes = [permissions.IsAuthenticated]
 	lookup_field = "username"
