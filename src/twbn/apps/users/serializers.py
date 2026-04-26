@@ -22,6 +22,16 @@ class UserSerializer(serializers.ModelSerializer):
 		)
 		read_only_fields = ("role", "date_joined")
 
+	def to_representation(self, instance):
+		data = super().to_representation(instance)
+		request = self.context.get("request")
+
+		# Hide email unless the requester is viewing their own profile
+		if not request or request.user != instance:
+			data.pop("email", None)
+
+		return data
+
 
 class RegistrationSerializer(serializers.ModelSerializer):
 	password = serializers.CharField(write_only=True)
