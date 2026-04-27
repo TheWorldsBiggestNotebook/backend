@@ -6,6 +6,10 @@ from .models import User
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
+	"""
+	Admin configuration for the custom User model.
+	"""
+
 	fieldsets = list(UserAdmin.fieldsets) + [
 		("Extra Fields", {"fields": ("role", "bio")})
 	]

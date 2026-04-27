@@ -4,6 +4,8 @@ from .models import Answer, Question
 
 
 class AnswerSerializer(serializers.ModelSerializer):
+	"""Serializer for the Answer model."""
+
 	author = serializers.ReadOnlyField(source="author.username")
 
 	class Meta:
@@ -13,6 +15,12 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
+	"""
+	Serializer for the Question model.
+
+	Includes nested answers for the question.
+	"""
+
 	author = serializers.ReadOnlyField(source="author.username")
 	answers = AnswerSerializer(many=True, read_only=True)
 

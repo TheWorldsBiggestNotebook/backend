@@ -3,7 +3,15 @@ from django.db import models
 
 
 class User(AbstractUser):
+	"""
+	Custom User model representing individuals in the TWBN system.
+	"""
+
 	class Role(models.TextChoices):
+		"""
+		Defines roles available for users.
+		"""
+
 		ADMIN = "ADMIN", "Admin"
 		MODERATOR = "MODERATOR", "Moderator"
 		MEMBER = "MEMBER", "Member"
@@ -25,4 +33,5 @@ class User(AbstractUser):
 		super().save(*args, **kwargs)
 
 	def __str__(self):
+		"""Returns the username of the user."""
 		return self.username
