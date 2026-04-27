@@ -8,6 +8,10 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+	"""
+	Serializer for the User model providing profile information.
+	"""
+
 	class Meta:
 		model = User
 		fields = (
@@ -23,6 +27,15 @@ class UserSerializer(serializers.ModelSerializer):
 		read_only_fields = ("role", "date_joined")
 
 	def to_representation(self, instance):
+		"""
+		Customize the output to hide email for other users.
+
+		Args:
+			instance: The User model instance.
+
+		Returns:
+			dict: The serialized user data.
+		"""
 		data = super().to_representation(instance)
 		request = self.context.get("request")
 
@@ -34,6 +47,10 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
+	"""
+	Serializer for handling new user registration.
+	"""
+
 	password = serializers.CharField(write_only=True)
 
 	class Meta:
@@ -46,4 +63,13 @@ class RegistrationSerializer(serializers.ModelSerializer):
 	# 	return value
 
 	def create(self, validated_data):
+		"""
+		Creates a new User instance using the create_user manager method.
+
+		Args:
+			validated_data (dict): Validated data from the request.
+
+		Returns:
+			User: The created user instance.
+		"""
 		return User.objects.create_user(**validated_data)
