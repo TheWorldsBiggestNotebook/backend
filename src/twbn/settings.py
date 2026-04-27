@@ -27,7 +27,11 @@ SECRET_KEY = "django-insecure-5y-d#60etrc=c___g#*^v^$5g3(%bzki99po^cod*oc^!kua%p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	"localhost",
+	"127.0.0.1",
+	"0.0.0.0",
+]
 
 
 # Application definition
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
 	"django.contrib.staticfiles",
 	"rest_framework",
 	"rest_framework.authtoken",
+	"drf_spectacular",
 	*apps.APPS,
 ]
 
@@ -111,6 +116,17 @@ REST_FRAMEWORK = {
 	"DEFAULT_AUTHENTICATION_CLASSES": [
 		"rest_framework.authentication.TokenAuthentication",
 	],
+	"DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+
+SPECTACULAR_SETTINGS = {
+	"TITLE": "TWBN API",
+	"DESCRIPTION": "API documentation for the TWBN project",
+	"VERSION": "1.0.0",
+	"SERVE_INCLUDE_SCHEMA": False,
+	"DISABLE_DOCSTRING_DESCRIPTIONS": False,
+	"SCHEMA_PATH_PREFIX": "/api",
 }
 
 
